@@ -1,39 +1,31 @@
-def loose_change(quantity):
-    result = {'Nickels': 0, 'Pennies': 0, 'Dimes': 0, 'Quarters': 0}
-    if quantity == 0:
-        print(result)
-        return
-    try:
-        cents = int(quantity)
-    except:
-        cents = float(quantity)   
-     
-    result['Quarters'] = cents // 25
-    leftover = cents % 25
-    result['Dimes'] = leftover // 10
-    leftover = leftover % 10
-    result['Nickels'] = leftover // 5
-    leftover = leftover % 5
-    result['Pennies'] = leftover
-    print(result)
+def loose_change(cents):
 
-def validateInput(value):
+    result = {'Nickels': 0, 'Pennies': 0, 'Dimes': 0, 'Quarters': 0}
+    #validate input
     try:
-        value = int(value)
-        if value > 0:
-            loose_change(value)
-        else:
-            loose_change(0)
+        value = int(cents)
+        if value <= 0:
+            print(result)
+            return
+        else: 
+            total = cents
     except:
         try: 
-            value = float(value)
-            if value > 0:
-                loose_change(value)
+            value = float(cents)
+            if value <= 0:
+                print(result)
+                return
             else:
-                loose_change(0)
+                total = int(cents)
         except:
-            loose_change(0)
-    
-while True:
-    inp = input("Type quantity in cents: ") 
-    validateInput(inp)
+            print(result)
+            return
+     
+    result['Quarters'] = int(total) // 25
+    leftover = total % 25
+    result['Dimes'] = int(leftover) // 10
+    leftover = leftover % 10
+    result['Nickels'] = int(leftover) // 5
+    leftover = leftover % 5
+    result['Pennies'] = int(leftover)
+    print(result)
